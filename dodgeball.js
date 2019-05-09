@@ -80,13 +80,13 @@ class RedTeammate extends Player {
 }
 
 const listPeopleChoices = () => {
-  const listElement = document.getElementById('people')
+  const listElement = document.getElementById('people');
   arrOfPeople.map(person => {
-    const li = document.createElement("li")
-    const button = document.createElement("button")
-    button.innerHTML = "Make Player"
+    const li = document.createElement("li");
+    const button = document.createElement("button");
+    button.innerHTML = "Make Player";
     button.addEventListener('click', function() {
-        makePlayer(person.id)
+        makePlayer(person.id);
       }
     );
     li.appendChild(button);
@@ -95,6 +95,28 @@ const listPeopleChoices = () => {
   })
 }
 
-const makePlayer = (id) => {
-  console.log(`li ${id} was clicked!`)
+const makePlayer = id => {
+  console.log(`li ${id} was clicked!`);
+  let newPlayer = arrOfPeople.find(player => player.id === id);
+  let createdPlayer = new Player(newPlayer.name, newPlayer.skillSet, newPlayer.id);
+  listOfPlayers.push(createdPlayer);
+  const li = document.createElement("li");
+  const button = document.createElement("button");
+  let blueButton = button.innerHTML = "Make Blue Teammate";
+  let redButton = button.innerHTML = "Make Red Teammate";
+  blueButton.addEventListener('click', player => makeBlueTeammate(player.id));
+  redButton.addEventListener('click', player => makeRedTeammate(player.id));
+  li.appendChild(blueButton);
+  li.appendChild(redButton);
+
 };
+
+const makeBlueTeammate = () => {
+  const blueList = document.getElementById("blue");
+  blueList.append()
+}
+
+const makeRedTeammate = () => {
+  const redList = document.getElementById("red");
+  redList.append()
+}
