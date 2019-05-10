@@ -1,0 +1,8 @@
+Whiteboard
+- remove players from people column and move to players list
+- players added to players list have buttons attached to their li allowing them to be added to blue or red team
+- color and mascot keys extended to players when added to a team, and they need to be removed from players list
+- write 3 unit tests using mocha and chai,
+  - prove a person becomes a player and a player becomes a teammate
+
+Build out Player, BlueTeammate, and RedTeammate classes

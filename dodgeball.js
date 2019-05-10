@@ -1,52 +1,52 @@
 const arrOfPeople = [
   {
     id: 2,
-    name: "Charles Young",
+    name: 'Charles Young',
     age: 55,
-    skillSet: "welding",
-    placeBorn: "Omaha, Nebraska"
+    skillSet: 'welding',
+    placeBorn: 'Omaha, Nebraska'
   },
   {
     id: 3,
-    name: "Judy Twilight",
+    name: 'Judy Twilight',
     age: 35,
-    skillSet: "fishing",
-    placeBorn: "Louisville, Kentucky"
+    skillSet: 'fishing',
+    placeBorn: 'Louisville, Kentucky'
   },
   {
     id: 4,
-    name: "Cynthia Doolittle",
+    name: 'Cynthia Doolittle',
     age: 20,
-    skillSet: "tic tac toe",
-    placeBorn: "Pawnee, Texas"
+    skillSet: 'tic tac toe',
+    placeBorn: 'Pawnee, Texas'
   },
   {
     id: 5,
-    name: "John Willouby",
+    name: 'John Willouby',
     age: 28,
-    skillSet: "pipe fitting",
-    placeBorn: "New York, New York"
+    skillSet: 'pipe fitting',
+    placeBorn: 'New York, New York'
   },
   {
     id: 6,
-    name: "Stan Honest",
+    name: 'Stan Honest',
     age: 20,
-    skillSet: "boom-a-rang throwing",
-    placeBorn: "Perth, Australia"
+    skillSet: 'boom-a-rang throwing',
+    placeBorn: 'Perth, Australia'
   },
   {
     id: 7,
-    name: "Mia Watu",
+    name: 'Mia Watu',
     age: 17,
-    skillSet: "acrobatics",
-    placeBorn: "Los Angeles, California"
+    skillSet: 'acrobatics',
+    placeBorn: 'Los Angeles, California'
   },
   {
     id: 8,
-    name: "Walter Cole",
+    name: 'Walter Cole',
     age: 32,
-    skillSet: "jump rope",
-    placeBorn: "New Orleans, Louisiana"
+    skillSet: 'jump rope',
+    placeBorn: 'New Orleans, Louisiana'
   },
 ]
 
@@ -81,9 +81,9 @@ class RedTeammate extends Player {
 const listPeopleChoices = () => {
   const listElement = document.getElementById('people');
   arrOfPeople.map(person => {
-    const li = document.createElement("li");
-    const button = document.createElement("button");
-    button.innerHTML = "Make Player";
+    const li = document.createElement('li');
+    const button = document.createElement('button');
+    button.innerHTML = 'Make Player';
     button.addEventListener('click', () => {
         makePlayer(person.id);
       }
@@ -100,11 +100,11 @@ const makePlayer = id => {
   const createdPlayer = new Player(newPlayer.name, newPlayer.skillSet, newPlayer.id);
   console.log('createdPlayer', createdPlayer)
   listOfPlayers.push(createdPlayer);
-  const li = document.createElement("li");
-  const blueButton = document.createElement("button");
-  blueButton.innerHTML = "Make Blue Teammate";
-  const redButton = document.createElement("button");
-  redButton.innerHTML = "Make Red Teammate";
+  const li = document.createElement('li');
+  const blueButton = document.createElement('button');
+  blueButton.innerHTML = 'Make Blue Teammate';
+  const redButton = document.createElement('button');
+  redButton.innerHTML = 'Make Red Teammate';
   blueButton.addEventListener('click', () => makeBlueTeammate(newPlayer.id));
   redButton.addEventListener('click', () => makeRedTeammate(newPlayer.id));
   li.appendChild(document.createTextNode(`name: ${newPlayer.name} | id: ${newPlayer.id}`))
@@ -114,7 +114,7 @@ const makePlayer = id => {
 };
 
 const makeBlueTeammate = id => {
-  const blueList = document.getElementById("blue");
+  const blueList = document.getElementById('blue');
   const li = document.createElement('li');
   const newTeammate = listOfPlayers.find(player => player.id === id);
   const newBlue = new BlueTeammate(newTeammate.name, newTeammate.skillSet, newTeammate.id, 'balls', 'blue')
@@ -123,10 +123,14 @@ const makeBlueTeammate = id => {
 }
 
 const makeRedTeammate = id => {
-  const redList = document.getElementById("red");
+  const redList = document.getElementById('red');
   const li = document.createElement('li');
   const newTeammate = listOfPlayers.find(player => player.id === id);
   const newRed = new RedTeammate(newTeammate.name, newTeammate.skillSet, newTeammate.id, 'lobster', 'red')
   li.appendChild(document.createTextNode(`${newRed.name} - ${newRed.color} - ${newRed.mascot}`));
   redList.append(li);
+}
+
+const createPerson = () => {
+
 }
