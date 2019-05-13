@@ -80,18 +80,44 @@ class RedTeammate extends Player {
 
 const listPeopleChoices = () => {
   const listElement = document.getElementById('people');
-  arrOfPeople.map(person => {
-    const li = document.createElement('li');
-    const button = document.createElement('button');
-    button.innerHTML = 'Make Player';
-    button.addEventListener('click', () => {
-        makePlayer(person.id);
+  const peopleBtn = document.getElementById('button');
+
+  if (listElement.hasChildNodes()) {
+    deleteChildren();
+    peopleBtn.innerText = 'List People'
+  } else {
+    peopleBtn.innerText = 'Hide People';
+    // create people items and append to listElement
+    arrOfPeople.map(person => {
+      const li = document.createElement('li');
+      const button = document.createElement('button');
+      button.innerHTML = 'Make Player';
+      button.addEventListener('click', () => {
+          makePlayer(person.id);
+        }
+      );
+      li.appendChild(button);
+      li.appendChild(document.createTextNode(`${person.name} - ${person.skillSet}`));
+      li.setAttribute('id', person.id);
+      listElement.append(li);
+    });
+      // remove people items that have their button clicked.
+    listElement.addEventListener('click', e => {
+      if (e.target.nodeName === 'BUTTON') {
+        // targeting parent of button clicked (li element)
+        e.target.parentNode.remove();
+        console.log('e', e, 'e.target', e.target);
       }
-    );
-    li.appendChild(button);
-    li.appendChild(document.createTextNode(`${person.name} - ${person.skillSet}`));
-    listElement.append(li);
-  })
+    });
+  }
+};
+
+const deleteChildren = () => {
+  const peopleList = document.getElementById("people");
+  while (peopleList.hasChildNodes()) {
+    peopleList.removeChild(peopleList.firstChild);
+  };
+  document.getElementById('button').innerText = 'List People'
 }
 
 const makePlayer = id => {
@@ -111,15 +137,17 @@ const makePlayer = id => {
   li.appendChild(blueButton);
   li.appendChild(redButton);
   playerList.append(li);
+
 };
 
 const makeBlueTeammate = id => {
   const blueList = document.getElementById('blue');
   const li = document.createElement('li');
   const newTeammate = listOfPlayers.find(player => player.id === id);
-  const newBlue = new BlueTeammate(newTeammate.name, newTeammate.skillSet, newTeammate.id, 'balls', 'blue')
+  const newBlue = new BlueTeammate(newTeammate.name, newTeammate.skillSet, newTeammate.id, 'balls', 'blue');
   li.appendChild(document.createTextNode(`${newBlue.name} - ${newBlue.color} - ${newBlue.mascot}`));
   blueList.append(li);
+  console.log('this', this)
 }
 
 const makeRedTeammate = id => {
