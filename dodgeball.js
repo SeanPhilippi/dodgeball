@@ -62,6 +62,12 @@ class Player {
   }
 }
 
+class DodgeBallPlayer {
+  constructor(canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience) {
+    this
+  }
+}
+
 class BlueTeammate extends Player {
   constructor(name, skillSet, id, mascot, color) {
     super(name, skillSet, id);
@@ -131,8 +137,8 @@ const makePlayer = id => {
   blueButton.innerHTML = 'Make Blue Teammate';
   const redButton = document.createElement('button');
   redButton.innerHTML = 'Make Red Teammate';
-  blueButton.addEventListener('click', () => makeBlueTeammate(newPlayer.id));
-  redButton.addEventListener('click', () => makeRedTeammate(newPlayer.id));
+  blueButton.addEventListener('click', (e) => makeBlueTeammate(newPlayer.id, e));
+  redButton.addEventListener('click', (e) => makeRedTeammate(newPlayer.id, e));
   li.appendChild(document.createTextNode(`name: ${newPlayer.name} | id: ${newPlayer.id}`))
   li.appendChild(blueButton);
   li.appendChild(redButton);
@@ -140,23 +146,25 @@ const makePlayer = id => {
 
 };
 
-const makeBlueTeammate = id => {
+const makeBlueTeammate = (id, e) => {
   const blueList = document.getElementById('blue');
   const li = document.createElement('li');
   const newTeammate = listOfPlayers.find(player => player.id === id);
   const newBlue = new BlueTeammate(newTeammate.name, newTeammate.skillSet, newTeammate.id, 'balls', 'blue');
   li.appendChild(document.createTextNode(`${newBlue.name} - ${newBlue.color} - ${newBlue.mascot}`));
   blueList.append(li);
-  console.log('this', this)
+  console.log('this', this);
+  e.target.parentNode.remove();
 }
 
-const makeRedTeammate = id => {
+const makeRedTeammate = (id, e) => {
   const redList = document.getElementById('red');
   const li = document.createElement('li');
   const newTeammate = listOfPlayers.find(player => player.id === id);
   const newRed = new RedTeammate(newTeammate.name, newTeammate.skillSet, newTeammate.id, 'lobster', 'red')
   li.appendChild(document.createTextNode(`${newRed.name} - ${newRed.color} - ${newRed.mascot}`));
   redList.append(li);
+  e.target.parentNode.remove();
 }
 
 const createPerson = () => {
