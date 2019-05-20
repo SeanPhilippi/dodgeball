@@ -54,21 +54,20 @@ const listOfPlayers = [];
 const blueTeam = [];
 const redTeam = [];
 
-class Player {
-  constructor(name, skillSet, id){
+class DodgeBallPlayer {
+  constructor(name, skillSet, id, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience) {
     this.name = name,
     this.skillSet = skillSet,
-    this.id = id
+    this.id = id,
+    this.canThrowBall = canThrowBall,
+    this.canDodgeBall = canDodgeBall,
+    this.hasPaid = hasPaid,
+    this.isHealthy = isHealthy,
+    this.yearsExperience = yearsExperience
   }
 }
 
-class DodgeBallPlayer {
-  constructor(canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience) {
-    this
-  }
-}
-
-class BlueTeammate extends Player {
+class BlueTeammate extends DodgeBallPlayer {
   constructor(name, skillSet, id, mascot, color) {
     super(name, skillSet, id);
     this.mascot = mascot,
@@ -76,7 +75,7 @@ class BlueTeammate extends Player {
   }
 }
 
-class RedTeammate extends Player {
+class RedTeammate extends DodgeBallPlayer {
   constructor(name, skillSet, id, mascot, color) {
     super(name, skillSet, id);
     this.mascot = mascot,
@@ -97,11 +96,31 @@ const listPeopleChoices = () => {
     arrOfPeople.map(person => {
       const li = document.createElement('li');
       const button = document.createElement('button');
+      const inputExpThrow = document.createElement('input')
+        .setAttribute('type', 'checkbox')
+        // .appendChild(document.createTextNode('can throw?'));
+      const inputExpDodge =document.createElement('input')
+        .setAttribute('type', 'checkbox')
+        // .appendChild(document.createTextNode('can dodge?'));
+      const inputPaid = document.createElement('input')
+        .setAttribute('type', 'checkbox')
+        // .appendChild(document.createTextNode('has paid?'));
+      const inputHealthy = document.createElement('input')
+        .setAttribute('type', 'checkbox')
+        // .appendChild(document.createTextNode('is healthy?'));
+      const inputYears = document.createElement('input')
+        .setAttribute('type', 'text')
+        // .appendChild(document.createTextNode('years of experience:'));
       button.innerHTML = 'Make Player';
       button.addEventListener('click', () => {
           makePlayer(person.id);
         }
       );
+      li.appendChild(inputExpThrow);
+      li.appendChild(inputExpDodge);
+      li.appendChild(inputPaid);
+      li.appendChild(inputHealthy);
+      li.appendChild(inputYears);
       li.appendChild(button);
       li.appendChild(document.createTextNode(`${person.name} - ${person.skillSet}`));
       li.setAttribute('id', person.id);
@@ -129,7 +148,7 @@ const deleteChildren = () => {
 const makePlayer = id => {
   const playerList = document.getElementById('players');
   const newPlayer = arrOfPeople.find(player => player.id === id);
-  const createdPlayer = new Player(newPlayer.name, newPlayer.skillSet, newPlayer.id);
+  const createdPlayer = new DodgeBallPlayer(newPlayer.name, newPlayer.skillSet, newPlayer.id);
   console.log('createdPlayer', createdPlayer)
   listOfPlayers.push(createdPlayer);
   const li = document.createElement('li');
