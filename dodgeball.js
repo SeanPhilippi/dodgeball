@@ -89,35 +89,46 @@ const listPeopleChoices = () => {
 
   if (listElement.hasChildNodes()) {
     deleteChildren();
-    peopleBtn.innerText = 'List People'
+    peopleBtn.innerText = 'List People';
   } else {
     peopleBtn.innerText = 'Hide People';
     // create people items and append to listElement
     arrOfPeople.map(person => {
       const li = document.createElement('li');
       const button = document.createElement('button');
+      // can throw
       const inputExpThrow = document.createElement('input')
-        .setAttribute('type', 'checkbox')
-        // .appendChild(document.createTextNode('can throw?'));
-      const inputExpDodge =document.createElement('input')
-        .setAttribute('type', 'checkbox')
-        // .appendChild(document.createTextNode('can dodge?'));
-      const inputPaid = document.createElement('input')
-        .setAttribute('type', 'checkbox')
-        // .appendChild(document.createTextNode('has paid?'));
-      const inputHealthy = document.createElement('input')
-        .setAttribute('type', 'checkbox')
-        // .appendChild(document.createTextNode('is healthy?'));
-      const inputYears = document.createElement('input')
-        .setAttribute('type', 'text')
-        // .appendChild(document.createTextNode('years of experience:'));
+      inputExpThrow.setAttribute('type', 'checkbox');
+      li.appendChild(inputExpThrow);
+      li.insertBefore(document.createTextNode('can throw?'), inputExpThrow);
+      // can dodge
+      const inputExpDodge = document.createElement('input');
+      inputExpDodge.setAttribute('type', 'checkbox');
+      li.appendChild(inputExpDodge);
+      li.insertBefore(document.createTextNode('can dodge?'), inputExpDodge);
+      // has paid
+      const inputPaid = document.createElement('input');
+      inputPaid.setAttribute('type', 'checkbox');
+      li.appendChild(inputPaid);
+      li.insertBefore(document.createTextNode('has paid?'), inputPaid);
+      // is healthy
+      const inputHealthy = document.createElement('input');
+      inputHealthy.setAttribute('type', 'checkbox');
+      li.appendChild(inputHealthy);
+      li.insertBefore(document.createTextNode('is healthy?'), inputHealthy);
+      // years experience
+      const inputYears = document.createElement('input');
+      inputYears.setAttribute('type', 'checkbox');
+      li.appendChild(inputYears);
+      li.insertBefore(document.createTextNode('years of experience: '), inputYears);
+
       button.innerHTML = 'Make Player';
       button.addEventListener('click', () => {
           makePlayer(person.id);
         }
       );
-      li.appendChild(inputExpThrow);
-      li.appendChild(inputExpDodge);
+
+
       li.appendChild(inputPaid);
       li.appendChild(inputHealthy);
       li.appendChild(inputYears);
