@@ -211,7 +211,6 @@ const makePlayer = id => {
   const playerList = document.getElementById('players');
   const newPlayer = arrOfPeople.find(player => player.id === id);
   const createdPlayer = new DodgeBallPlayer(newPlayer.name, newPlayer.skillSet, newPlayer.id);
-  console.log('createdPlayer', createdPlayer);
   listOfPlayers.push(createdPlayer);
   const li = document.createElement('li');
   const blueButton = document.createElement('button');
@@ -227,6 +226,7 @@ const makePlayer = id => {
   li.appendChild(blueButton);
   li.appendChild(redButton);
   li.appendChild(randomButton);
+  li.setAttribute('class', 'player');
   playerList.append(li);
   // toggle isPlayer prop to true so they are not shown by List People button anymore
   arrOfPeople.find(person => person.id === id).isPlayer = true;
@@ -239,6 +239,7 @@ const makeBlueTeammate = (id, e) => {
   const newTeammate = listOfPlayers.find(player => player.id === id);
   const newBlue = new BlueTeammate(newTeammate.name, newTeammate.skillSet, newTeammate.id, 'dolphin', 'blue');
   li.appendChild(document.createTextNode(`${newBlue.name} - ${newBlue.color} - ${newBlue.mascot}`));
+  li.setAttribute('class', 'blue-player');
   blueList.append(li);
   e.target.parentNode.remove();
 }
@@ -249,6 +250,7 @@ const makeRedTeammate = (id, e) => {
   const newTeammate = listOfPlayers.find(player => player.id === id);
   const newRed = new RedTeammate(newTeammate.name, newTeammate.skillSet, newTeammate.id, 'lobster', 'red')
   li.appendChild(document.createTextNode(`${newRed.name} - ${newRed.color} - ${newRed.mascot}`));
+  li.setAttribute('class', 'red-player');
   redList.append(li);
   e.target.parentNode.remove();
 }
