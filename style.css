@@ -1,0 +1,18 @@
+ul#people {
+  border: .15rem rgb(0, 109, 128) dashed;
+  padding: .5rem;
+  max-width: 99%;
+  display: flex;
+  overflow: auto;
+  flex-wrap: wrap;
+}
+
+.person {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  width: 19rem;
+  border: black solid .1rem;
+  margin: .1rem .2rem;
+  padding: .5rem;
+}

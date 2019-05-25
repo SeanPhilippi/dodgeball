@@ -133,8 +133,10 @@ const listPeopleChoices = () => {
       li.appendChild(inputHealthy);
       li.appendChild(inputYears);
       li.appendChild(button);
-      li.appendChild(document.createTextNode(`${person.name} - ${person.skillSet}`));
+      li.appendChild(document.createTextNode(`name: ${person.name}
+      skill: ${person.skillSet}`));
       li.setAttribute('id', person.id);
+      li.setAttribute('class', 'person')
       listElement.append(li);
     });
       // remove people items that have their button clicked.
