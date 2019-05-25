@@ -66,6 +66,7 @@ document.getElementById('new-entries').onsubmit = function addPerson(e) {
     skillSet: null,
     placeBorn: null
   };
+  // initializing index to increment to loop through array of form input values
   let i = 0;
   for (key in newPerson) {
     if (!newPerson[key]) {
@@ -75,8 +76,14 @@ document.getElementById('new-entries').onsubmit = function addPerson(e) {
       i++;
     }
   }
+  // newly created newPerson object pushed to arrOfPeople, can now be rendered when listOfPeopleChoices is called
   arrOfPeople.push(newPerson);
   console.log('people', arrOfPeople);
+  document.getElementById('submit-message').classList.toggle('hidden');
+  document.getElementById('submit-message').classList.toggle('visible')
+  setTimeout(function() {
+    document.getElementById('submit-message').classList.toggle('hidden');
+  }, 2000);
 }
 
 class DodgeBallPlayer {

@@ -8,6 +8,23 @@
   margin-bottom: 1.2rem;
 }
 
+.visible {
+  color: #4BB543;
+  font-weight: 600;
+  border: #4BB543 .2rem solid;
+  text-align: center;
+}
+
+.hidden {
+  color: #4BB543;
+  font-weight: 600;
+  border: #4BB543 .2rem solid;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
 .form-item {
   display: flex;
   flex-direction: column;
