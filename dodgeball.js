@@ -54,8 +54,8 @@ const listOfPlayers = [];
 const blueTeam = [];
 const redTeam = [];
 
+// call addPerson upon form submit
 document.getElementById('new-entries').onsubmit = function addPerson(e) {
-  console.log('working')
   // prevent form refresh
   e.preventDefault();
   // initializing newPerson object to fill with values inputted by user
@@ -66,24 +66,37 @@ document.getElementById('new-entries').onsubmit = function addPerson(e) {
     skillSet: null,
     placeBorn: null
   };
+  let submitMessage = document.getElementById('submit-message');
   // initializing index to increment to loop through array of form input values
   let i = 0;
   for (key in newPerson) {
+    const form = document.getElementById('new-entries');
     if (!newPerson[key]) {
-      const form = document.getElementById('new-entries');
       newPerson[key] = form.querySelectorAll('.input-value')[i].value;
-      console.log('input values: ', form.querySelectorAll('.input-value')[i].value)
       i++;
     }
   }
-  // newly created newPerson object pushed to arrOfPeople, can now be rendered when listOfPeopleChoices is called
-  arrOfPeople.push(newPerson);
-  console.log('people', arrOfPeople);
-  document.getElementById('submit-message').classList.toggle('hidden');
-  document.getElementById('submit-message').classList.toggle('visible')
-  setTimeout(function() {
-    document.getElementById('submit-message').classList.toggle('hidden');
-  }, 2000);
+
+  if (!Object.values(newPerson).includes("")) {
+    // newly created newPerson object pushed to arrOfPeople, can now be rendered when listOfPeopleChoices is called
+    arrOfPeople.push(newPerson);
+    console.log('people', arrOfPeople);
+    submitMessage.innerText = "Your person has been registered!";
+    submitMessage.style.cssText = 'color: #4BB543; border-color: #4BB543;';
+    submitMessage.classList.toggle('hidden');
+    setTimeout(function() {
+      submitMessage.classList.toggle('hidden');
+    }, 2000);
+  } else {
+    submitMessage.style.cssText = 'color: red; border-color: red';
+    submitMessage.innerText = "Invalid input! Please enter something for all values.";
+    submitMessage.classList.toggle('hidden');
+    setTimeout(function() {
+      submitMessage.classList.toggle('hidden');
+    }, 2000);
+    console.log(newPerson[key]);
+    console.log('false');
+  }
 }
 
 class DodgeBallPlayer {

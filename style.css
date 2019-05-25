@@ -8,7 +8,7 @@
   margin-bottom: 1.2rem;
 }
 
-.visible {
+#submit-message {
   color: #4BB543;
   font-weight: 600;
   border: #4BB543 .2rem solid;
