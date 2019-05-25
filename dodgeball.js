@@ -94,7 +94,9 @@ const listPeopleChoices = () => {
     peopleBtn.innerText = 'Hide People';
     // create people items and append to listElement
     arrOfPeople.map(person => {
+      // player element for each player
       const li = document.createElement('li');
+      // 'make player' button
       const button = document.createElement('button');
       // can throw
       const inputExpThrow = document.createElement('input')
@@ -128,10 +130,6 @@ const listPeopleChoices = () => {
         }
       );
 
-
-      li.appendChild(inputPaid);
-      li.appendChild(inputHealthy);
-      li.appendChild(inputYears);
       li.appendChild(button);
       li.appendChild(document.createTextNode(`name: ${person.name}
       skill: ${person.skillSet}`));
