@@ -54,6 +54,29 @@ const listOfPlayers = [];
 const blueTeam = [];
 const redTeam = [];
 
+document.getElementById('new-entries').onsubmit = function addPerson(e) {
+  console.log('working')
+  // prevent form refresh
+  e.preventDefault();
+  // initializing newPerson object to fill with values inputted by user
+  const newPerson = {
+    name: null,
+    id: null,
+    age: null,
+    skillSet: null,
+    placeBorn: null
+  };
+  let i = 0;
+  for (key in newPerson) {
+    const form = document.getElementById('new-entries');
+    newPerson[key] = form.querySelectorAll('.input-value')[i].value;
+    console.log('input values: ', form.querySelectorAll('.input-value')[i].value)
+    i++;
+  }
+  arrOfPeople.push(newPerson);
+  console.log('people', arrOfPeople);
+}
+
 class DodgeBallPlayer {
   constructor(name, skillSet, id, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience) {
     this.name = name,
@@ -195,8 +218,4 @@ const makeRedTeammate = (id, e) => {
   li.appendChild(document.createTextNode(`${newRed.name} - ${newRed.color} - ${newRed.mascot}`));
   redList.append(li);
   e.target.parentNode.remove();
-}
-
-const createPerson = () => {
-
 }

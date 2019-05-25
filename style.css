@@ -1,7 +1,23 @@
+#new-entries {
+  width: 25rem;
+}
+
+#form-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: .5rem;
+}
+
 ul#people {
   border: .15rem rgb(0, 109, 128) dashed;
   padding: .5rem;
-  max-width: 99%;
+  max-width: 95%;
   display: flex;
   overflow: auto;
   flex-wrap: wrap;
@@ -9,10 +25,11 @@ ul#people {
 
 .person {
   list-style-type: none;
+  border-radius: .5rem;
   display: flex;
   flex-direction: column;
   width: 19rem;
   border: black solid .1rem;
-  margin: .1rem .2rem;
+  margin: .2rem;
   padding: .5rem;
 }

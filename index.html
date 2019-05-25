@@ -9,10 +9,25 @@
 </head>
 <body>
   <div>
-    <form id="new-entries" type="text" onsubmit="createPerson()">
-      <label for="new-entries">Create New Person: </label>
-      <input type="text">
-      <input type="submit">
+    <form id="new-entries">
+      <label for="new-entries" id="form-title">Create New Person: </label>
+      <div class="form-item">
+        <label for="name">Name:</label>
+        <input id="name" class="input-value" type="text">
+      </div>
+      <div class="form-item">
+        <label for="age">Age:</label>
+        <input id="age" class="input-value" type="text">
+      </div>
+      <div class="form-item">
+        <label for="skillSet">Skill Set:</label>
+        <input id="skillSet" class="input-value" type="text">
+      </div>
+      <div class="form-item">
+        <label for="placeBorn">Place Born:</label>
+        <input id="placeBorn" class="input-value" type="text">
+      </div>
+      <input type="submit" id="submit">
     </form>
   </div>
   <div>

@@ -6,3 +6,7 @@ Whiteboard
   - prove a person becomes a player and a player becomes a teammate
 
 Build out Player, BlueTeammate, and RedTeammate classes
+
+- delete people from arrOfPeople upon conversion to dodgeballplayer
+- allow creation of new people with input, set name, skillSet, age, and placeBorn.  id will default to +1 of last player id
+  - convert input to a form
