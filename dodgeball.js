@@ -61,17 +61,19 @@ document.getElementById('new-entries').onsubmit = function addPerson(e) {
   // initializing newPerson object to fill with values inputted by user
   const newPerson = {
     name: null,
-    id: null,
+    id: arrOfPeople[arrOfPeople.length - 1].id + 1,
     age: null,
     skillSet: null,
     placeBorn: null
   };
   let i = 0;
   for (key in newPerson) {
-    const form = document.getElementById('new-entries');
-    newPerson[key] = form.querySelectorAll('.input-value')[i].value;
-    console.log('input values: ', form.querySelectorAll('.input-value')[i].value)
-    i++;
+    if (!newPerson[key]) {
+      const form = document.getElementById('new-entries');
+      newPerson[key] = form.querySelectorAll('.input-value')[i].value;
+      console.log('input values: ', form.querySelectorAll('.input-value')[i].value)
+      i++;
+    }
   }
   arrOfPeople.push(newPerson);
   console.log('people', arrOfPeople);
