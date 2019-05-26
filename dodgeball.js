@@ -58,6 +58,7 @@ const arrOfPeople = [
 ]
 
 const listOfPlayers = [];
+// * use these arrays
 const blueTeam = [];
 const redTeam = [];
 
@@ -106,9 +107,10 @@ document.getElementById('new-entries').onsubmit = function addPerson(e) {
 }
 
 class DodgeBallPlayer {
-  constructor(name, skillSet, id, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience) {
+  constructor(name, skillSet, placeBorn, id, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience) {
     this.name = name,
     this.skillSet = skillSet,
+    this.placeBorn = placeBorn,
     this.id = id,
     this.canThrowBall = canThrowBall,
     this.canDodgeBall = canDodgeBall,
@@ -119,16 +121,16 @@ class DodgeBallPlayer {
 }
 
 class BlueTeammate extends DodgeBallPlayer {
-  constructor(name, skillSet, id, mascot, color) {
-    super(name, skillSet, id);
+  constructor(name, skillSet, placeBorn, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience, id, mascot, color) {
+    super(name, skillSet, placeBorn, id, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience);
     this.mascot = mascot,
     this.color = color
   }
 }
 
 class RedTeammate extends DodgeBallPlayer {
-  constructor(name, skillSet, id, mascot, color) {
-    super(name, skillSet, id);
+  constructor(name, skillSet, placeBorn, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience, id, mascot, color) {
+    super(name, skillSet, placeBorn, id, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience);
     this.mascot = mascot,
     this.color = color
   }
@@ -146,6 +148,8 @@ const listPeopleChoices = () => {
     // create people items and append to listElement
     arrOfPeople.map(person => {
       if (!person.isPlayer) {
+        // push player object in listOfPlayers array
+        listOfPlayers.push(person);
         // player element for each player
         const li = document.createElement('li');
         // 'make player' button
@@ -212,6 +216,8 @@ const makePlayer = id => {
   const newPlayer = arrOfPeople.find(player => player.id === id);
   const createdPlayer = new DodgeBallPlayer(newPlayer.name, newPlayer.skillSet, newPlayer.id);
   listOfPlayers.push(createdPlayer);
+  // remove that player from arrOfPeople
+  arrOfPeople.splice(arrOfPeople.findIndex(player => player.id === id), 1);
   const li = document.createElement('li');
   const blueButton = document.createElement('button');
   blueButton.innerHTML = 'Make Blue Teammate';
@@ -219,13 +225,18 @@ const makePlayer = id => {
   redButton.innerHTML = 'Make Red Teammate';
   const randomButton = document.createElement('button');
   randomButton.innerHTML = 'Random Team';
+  const removeButton = document.createElement('button');
+  removeButton.innerHTML = 'Remove Player';
   blueButton.addEventListener('click', e => makeBlueTeammate(newPlayer.id, e));
   redButton.addEventListener('click', e => makeRedTeammate(newPlayer.id, e));
-  randomButton.addEventListener('click', e => assignRandom(newPlayer.id, e))
-  li.appendChild(document.createTextNode(`name: ${newPlayer.name} | id: ${newPlayer.id}`))
+  randomButton.addEventListener('click', e => assignRandom(newPlayer.id, e));
+  removeButton.addEventListener('click', e => removePlayer(newPlayer.id));
+  // * add some content here
+  li.appendChild(document.createTextNode(`name: ${newPlayer.name} | id: ${newPlayer.id}`));
   li.appendChild(blueButton);
   li.appendChild(redButton);
   li.appendChild(randomButton);
+  li.appendChild(removeButton);
   li.setAttribute('class', 'player');
   playerList.append(li);
   // toggle isPlayer prop to true so they are not shown by List People button anymore
@@ -263,3 +274,9 @@ const assignRandom = (id, e) => {
   const num = getRandomInt(2);
   return num === 0 ? makeBlueTeammate(id, e) : makeRedTeammate(id, e);
 }
+
+const removePlayer = (id) => {
+  arrOfPeople.push(listOfPlayers.splice(listOfPlayers.findIndex(player => player.id === id), 1)[0]);
+}
+
+// Unit Tests Here
