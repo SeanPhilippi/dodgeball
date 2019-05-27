@@ -4,56 +4,49 @@ const arrOfPeople = [
     name: 'Charles Young',
     age: 55,
     skillSet: 'welding',
-    placeBorn: 'Omaha, Nebraska',
-    isPlayer: false
+    placeBorn: 'Omaha, Nebraska'
   },
   {
     id: 3,
     name: 'Judy Twilight',
     age: 35,
     skillSet: 'fishing',
-    placeBorn: 'Louisville, Kentucky',
-    isPlayer: false
+    placeBorn: 'Louisville, Kentucky'
   },
   {
     id: 4,
     name: 'Cynthia Doolittle',
     age: 20,
     skillSet: 'tic tac toe',
-    placeBorn: 'Pawnee, Texas',
-    isPlayer: false
+    placeBorn: 'Pawnee, Texas'
   },
   {
     id: 5,
     name: 'John Willouby',
     age: 28,
     skillSet: 'pipe fitting',
-    placeBorn: 'New York, New York',
-    isPlayer: false
+    placeBorn: 'New York, New York'
   },
   {
     id: 6,
     name: 'Stan Honest',
     age: 20,
     skillSet: 'boom-a-rang throwing',
-    placeBorn: 'Perth, Australia',
-    isPlayer: false
+    placeBorn: 'Perth, Australia'
   },
   {
     id: 7,
     name: 'Mia Watu',
     age: 17,
     skillSet: 'acrobatics',
-    placeBorn: 'Los Angeles, California',
-    isPlayer: false
+    placeBorn: 'Los Angeles, California'
   },
   {
     id: 8,
     name: 'Walter Cole',
     age: 32,
     skillSet: 'jump rope',
-    placeBorn: 'New Orleans, Louisiana',
-    isPlayer: false
+    placeBorn: 'New Orleans, Louisiana'
   },
 ]
 
@@ -135,7 +128,8 @@ class RedTeammate extends DodgeBallPlayer {
     this.color = color
   }
 }
-
+// * separate this function into several functions
+// * have listPeopleChoices show and hide players on the dom, but other functions add and delete from the arrays
 const listPeopleChoices = () => {
   const listElement = document.getElementById('people');
   const peopleBtn = document.getElementById('button');
@@ -147,57 +141,52 @@ const listPeopleChoices = () => {
     peopleBtn.innerText = 'Hide People';
     // create people items and append to listElement
     arrOfPeople.map(person => {
-      if (!person.isPlayer) {
-        // push player object in listOfPlayers array
-        listOfPlayers.push(person);
-        // player element for each player
-        const li = document.createElement('li');
-        // 'make player' button
-        const button = document.createElement('button');
-        // can throw
-        const inputExpThrow = document.createElement('input')
-        inputExpThrow.setAttribute('type', 'checkbox');
-        li.appendChild(inputExpThrow);
-        li.insertBefore(document.createTextNode('can throw?'), inputExpThrow);
-        // can dodge
-        const inputExpDodge = document.createElement('input');
-        inputExpDodge.setAttribute('type', 'checkbox');
-        li.appendChild(inputExpDodge);
-        li.insertBefore(document.createTextNode('can dodge?'), inputExpDodge);
-        // has paid
-        const inputPaid = document.createElement('input');
-        inputPaid.setAttribute('type', 'checkbox');
-        li.appendChild(inputPaid);
-        li.insertBefore(document.createTextNode('has paid?'), inputPaid);
-        // is healthy
-        const inputHealthy = document.createElement('input');
-        inputHealthy.setAttribute('type', 'checkbox');
-        li.appendChild(inputHealthy);
-        li.insertBefore(document.createTextNode('is healthy?'), inputHealthy);
-        // years experience
-        const inputYears = document.createElement('input');
-        inputYears.setAttribute('type', 'checkbox');
-        li.appendChild(inputYears);
-        li.insertBefore(document.createTextNode('years of experience: '), inputYears);
+      // player element for each player
+      const li = document.createElement('li');
+      // 'make player' button
+      const button = document.createElement('button');
+      // can throw
+      const inputExpThrow = document.createElement('input')
+      inputExpThrow.setAttribute('type', 'checkbox');
+      li.appendChild(inputExpThrow);
+      li.insertBefore(document.createTextNode('can throw?'), inputExpThrow);
+      // can dodge
+      const inputExpDodge = document.createElement('input');
+      inputExpDodge.setAttribute('type', 'checkbox');
+      li.appendChild(inputExpDodge);
+      li.insertBefore(document.createTextNode('can dodge?'), inputExpDodge);
+      // has paid
+      const inputPaid = document.createElement('input');
+      inputPaid.setAttribute('type', 'checkbox');
+      li.appendChild(inputPaid);
+      li.insertBefore(document.createTextNode('has paid?'), inputPaid);
+      // is healthy
+      const inputHealthy = document.createElement('input');
+      inputHealthy.setAttribute('type', 'checkbox');
+      li.appendChild(inputHealthy);
+      li.insertBefore(document.createTextNode('is healthy?'), inputHealthy);
+      // years experience
+      const inputYears = document.createElement('input');
+      inputYears.setAttribute('type', 'checkbox');
+      li.appendChild(inputYears);
+      li.insertBefore(document.createTextNode('years of experience: '), inputYears);
 
-        button.innerHTML = 'Make Player';
-        button.addEventListener('click', () => {
-          makePlayer(person.id);
-        });
+      button.innerHTML = 'Make Player';
+      button.addEventListener('click', () => {
+        makePlayer(person.id);
+      });
 
-        li.appendChild(button);
-        li.appendChild(document.createTextNode(`name: ${person.name} skill: ${person.skillSet}`));
-        li.setAttribute('id', person.id);
-        li.setAttribute('class', 'person')
-        listElement.append(li);
-      }
+      li.appendChild(button);
+      li.appendChild(document.createTextNode(`name: ${person.name} skill: ${person.skillSet}`));
+      li.setAttribute('id', person.id);
+      li.setAttribute('class', 'person')
+      listElement.append(li);
     })
     // remove people items that have their button clicked.
     listElement.addEventListener('click', e => {
       if (e.target.nodeName === 'BUTTON') {
         // targeting parent of button clicked (li element)
         e.target.parentNode.remove();
-        // console.log('e', e, 'e.target', e.target);
       }
     })
   }
@@ -230,7 +219,7 @@ const makePlayer = id => {
   blueButton.addEventListener('click', e => makeBlueTeammate(newPlayer.id, e));
   redButton.addEventListener('click', e => makeRedTeammate(newPlayer.id, e));
   randomButton.addEventListener('click', e => assignRandom(newPlayer.id, e));
-  removeButton.addEventListener('click', e => removePlayer(newPlayer.id));
+  removeButton.addEventListener('click', e => removePlayer(newPlayer.id, e));
   // * add some content here
   li.appendChild(document.createTextNode(`name: ${newPlayer.name} | id: ${newPlayer.id}`));
   li.appendChild(blueButton);
@@ -239,8 +228,6 @@ const makePlayer = id => {
   li.appendChild(removeButton);
   li.setAttribute('class', 'player');
   playerList.append(li);
-  // toggle isPlayer prop to true so they are not shown by List People button anymore
-  arrOfPeople.find(person => person.id === id).isPlayer = true;
   console.log('arrOfPeople', arrOfPeople)
 };
 
@@ -275,8 +262,11 @@ const assignRandom = (id, e) => {
   return num === 0 ? makeBlueTeammate(id, e) : makeRedTeammate(id, e);
 }
 
-const removePlayer = (id) => {
+const removePlayer = (id, e) => {
   arrOfPeople.push(listOfPlayers.splice(listOfPlayers.findIndex(player => player.id === id), 1)[0]);
+  console.log('arrOfPeople after remove: ', arrOfPeople);
+  console.log('listOfPlayers after remove: ', listOfPlayers);
+  e.target.parentNode.remove();
 }
 
 // Unit Tests Here
